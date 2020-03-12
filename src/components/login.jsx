@@ -21,7 +21,7 @@ const Login = (props) => {
     
     const handleSubmit = e => {
         
-        http.post('http://localhost:5000/api/user/login', {mobile}).then(res => {
+        http.post('/user/login', {mobile}).then(res => {
             NotificationManager.success('Success', 'OTP sent to mobile number');
             setIsOtpGenerated(true);
 
@@ -36,17 +36,19 @@ const Login = (props) => {
             OTP : otp
         }
 
-        http.post('http://localhost:5000/api/user/verifyLoginOTP', data).then(res => {
+        http.post('/user/verifyLoginOTP', data).then(res => {
             NotificationManager.success('Success', 'Verified Successfully');
             props.history.push('/event-list');
         }).catch(error => {
+            setOtpError('wrong otp entered ')
             NotificationManager.error('Error', 'OTP Mismatched');
         })
     }
 
 
     return ( 
-        <div   style={{
+        <div data-test='login-component'
+        style={{
             display: "flex",
             justifyContent: "center",
             marginTop: "8%"
@@ -55,7 +57,8 @@ const Login = (props) => {
         <div
                     style={{
                         display: "flex",
-                        justifyContent: "center"
+                        justifyContent: "center",
+                        backgroundColor : "gainsboro"
                     }}
                 >
                     <h5>Event Management</h5>
@@ -93,17 +96,18 @@ const Login = (props) => {
                     ></TextField>
                 </CardContent>
                 <CardActions style={{ display: "flex", justifyContent: "center" }}>
-                    <Button
+                 {isOtpGenerated === 'none' ? <Button
                         style={{
                             backgroundColor: "#000",
                             borderRadius: "20px",
+                            color: 'white'
                         }}
                         size="small"
                         color="secondary"
                         variant="contained"
                         onClick={handleSubmit}
-                        disabled={mobileError || mobile =='' ? true : false}
-                    >Login</Button>
+                        disabled={mobileError || mobile === '' ? true : false}
+                    >Login</Button> : 
                     <Button
                         style={{
                             backgroundColor: "#000",
@@ -115,7 +119,7 @@ const Login = (props) => {
                         onClick={handleValidate}
                         style={{display:isOtpGenerated}}
                         //disabled={mobileError || mobile =='' ? true : false}
-                    >Validate</Button>
+                    >Validate</Button>}
                 </CardActions>
                 <NotificationContainer/>
             </Card>

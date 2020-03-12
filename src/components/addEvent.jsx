@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Card from '@material-ui/core/Card';
 import {
     Button,
     MenuItem,
@@ -28,16 +29,28 @@ const AddEvent = (props) => {
     const [eventLocationError, setEventLocationError] = useState('');
     const [gender, setGender] = useState('');
     const [genderError, setGenderError] = useState('');
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
     const [imageUpload, setImageUpload] = useState('');
 
     const events = ['Marriage', 'Engagement', 'Birthday'];
     const eventLocations = ['Jaipur', 'Delhi', 'Gurgaon', 'Noida'];
-    const genders = ['Male Only', 'Female Only']
+    const genders = ['Male Only', 'Female Only', 'Male & Female']
 
     const handleDateChange = date => {
         setSelectedDate(date);
       };
+
+      const handleClearEvent = () => {
+          setEventLocation('');
+          setEventType('');
+          setGender('');
+          setSelectedDate(new Date('2014-08-18T21:11:54'));
+          setImageUpload('');
+          setEventLocationError('');
+          setEventTypeError('');
+          setGenderError('');
+          
+      }
 
     const handleCreateEvent = () => {
             const data = {
@@ -45,11 +58,11 @@ const AddEvent = (props) => {
                 'image' : imageUpload,
                 'location' : eventLocation,
                 'data' : selectedDate,
-                'genederAllowed' : gender
+                'genderAllowed' : gender
             }
             
 
-            http.post('http://localhost:5000/api/event/add', data).then(res => {
+            http.post('/event/add', data).then(res => {
                 props.history.push('/event-list');
                 
             }).catch(error => {
@@ -71,6 +84,7 @@ const AddEvent = (props) => {
 
     return (<React.Fragment>
         <Header type='list'/>
+        <Card style={{width : '80%', marginLeft : '10%', marginTop : '3%'}}>
         <FormControl error={eventTypeError ? true : null} variant="outlined" className="opening-box" style={{
             width: '50%',
             padding: '20px'
@@ -119,7 +133,7 @@ const AddEvent = (props) => {
             width: '50%',
             padding: '20px'
         }}>
-            <InputLabel htmlFor="filled-jobType-simple">Gender</InputLabel>
+            <InputLabel htmlFor="filled-jobType-simple">Genders Allowed</InputLabel>
             <Select
                 value={gender}
                 onChange={e => setGender(e.target.value)}
@@ -179,10 +193,22 @@ const AddEvent = (props) => {
         <Button
             variant="contained"
             component="label"
+            color="primary"
             onClick={handleCreateEvent}
+            style={{padding : '10px', marginRight : '10px', marginBottom : '10px'}}
         >
             Create Event
         </Button>
+        <Button
+            variant="contained"
+            component="label"
+            color="secondary"
+            onClick={handleClearEvent}
+            style={{padding : '10px', marginBottom : '10px'}}
+        >
+            Clear Event
+        </Button>
+        </Card>
     </React.Fragment>);
 }
 
