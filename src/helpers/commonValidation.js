@@ -1,5 +1,5 @@
 export const checkMobileValidation = (mobile) => {
-    const mobileRegex = "^([0|\+[0-9]{1,5})?([6-9][0-9]{9})$";
+    const mobileRegex = "^([0|+[0-9]{1,5})?([6-9][0-9]{9})$";
     if (mobile.trim() === "") {
         return "Mobile is Required";
     } else if (mobile.match(mobileRegex) === null) {

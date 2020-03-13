@@ -4,6 +4,7 @@ import Enzyme, { shallow } from 'enzyme';
 import Header from './header';
 const mockFn = jest.fn();
 Enzyme.configure({ adapter: new EnzymeAdapter() });
+
 describe('Header component', () =>{
     test('should render component ', () => {
         const wrapper = shallow(<Header />)

@@ -1,0 +1,21 @@
+.login-header{
+    display: flex;
+    justify-content: center;
+    margin-top: 8%;
+}
+
+.card-width {
+    max-width: 400px;
+}
+.event-management-box{
+    display: flex;
+    justify-content: center;
+    background-color : gainsboro;
+}
+.login-button{
+    color: white;
+}
+.button {
+    background-color: #000;
+    border-radius: 20px;
+}

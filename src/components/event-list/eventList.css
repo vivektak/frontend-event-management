@@ -1,0 +1,21 @@
+.search-bar{
+    margin: 0 auto;
+    max-width: 800;
+}
+.grid{
+    padding-top : 20px;
+}
+.event-card{
+    margin: 10px;
+    padding-top : 20px;
+     background-color : gainsboro;
+}
+.event-type-card{
+    font-size : 90px;
+}
+.event-loc-card{
+    font-size : 32px;
+}
+.img-card{
+    text-align:right;
+}

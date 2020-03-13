@@ -1,0 +1,12 @@
+.event-management{
+    flex-grow: 1;
+    text-align : left;
+}
+.add-event{
+    flex-grow: 1;
+    text-align : right;
+}
+.link-add-event{
+    color: white;
+    text-decoration-line: none;
+}

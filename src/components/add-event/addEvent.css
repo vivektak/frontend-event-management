@@ -1,0 +1,25 @@
+.card{
+    width : 80%;
+    margin-left : 10%;
+    margin-top : 3%;
+}
+.form-control{
+    width: 50%;
+    margin:10px !important;
+    /* padding: 20px !important; */
+}
+.date-picker{
+    padding-right: 20px;
+}
+.upload-button{
+    padding-right: 20px !important;
+}
+.create-event-btn{
+    padding : 10px !important;
+    margin-right : 10px  !important;
+    margin-bottom : 10px  !important;
+}
+.clear-event-btn{
+    padding : 10px  !important;
+    margin-bottom : 10px  !important;
+}

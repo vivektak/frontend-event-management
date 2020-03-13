@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
     CardContent,
     Card,
@@ -6,10 +6,10 @@ import {
     Button,
     TextField
 } from "@material-ui/core";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
-
-import {checkMobileValidation} from '../helpers/commonValidation';
-import { http } from '../helpers/httpService';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { checkMobileValidation } from '../../helpers/commonValidation';
+import { http } from '../../helpers/httpService';
+import './login.css';
 
 const Login = (props) => {
 
@@ -18,22 +18,19 @@ const Login = (props) => {
     const [otp, setOtp] = useState('');
     const [otpError, setOtpError] = useState('');
     const [isOtpGenerated, setIsOtpGenerated] = useState('none');
-    
+
     const handleSubmit = e => {
-        
-        http.post('/user/login', {mobile}).then(res => {
+        http.post('/user/login', { mobile }).then(res => {
             NotificationManager.success('Success', 'OTP sent to mobile number');
             setIsOtpGenerated(true);
-
         })
     };
 
 
-    const handleValidate = e =>{
-        
+    const handleValidate = e => {
         const data = {
             mobile,
-            OTP : otp
+            OTP: otp
         }
 
         http.post('/user/verifyLoginOTP', data).then(res => {
@@ -45,22 +42,11 @@ const Login = (props) => {
         })
     }
 
+    return (
+        <div data-test='login-component' className='login-header'>
 
-    return ( 
-        <div data-test='login-component'
-        style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "8%"
-        }}>
-        <Card style={{ maxWidth: "400px" }}>
-        <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        backgroundColor : "gainsboro"
-                    }}
-                >
+            <Card className='card-width'>
+                <div className='event-management-box'>
                     <h5>Event Management</h5>
                 </div>
                 <CardContent>
@@ -92,39 +78,33 @@ const Login = (props) => {
                             setOtp(e.target.value);
                         }}
                         margin="normal"
-                        style={{display:isOtpGenerated}}
+                        style={{ display: isOtpGenerated }}
                     ></TextField>
                 </CardContent>
                 <CardActions style={{ display: "flex", justifyContent: "center" }}>
-                 {isOtpGenerated === 'none' ? <Button
-                        style={{
-                            backgroundColor: "#000",
-                            borderRadius: "20px",
-                            color: 'white'
-                        }}
+                    {isOtpGenerated === 'none' ? <Button
+                        className='button login-button'
+                        name='login'
                         size="small"
                         color="secondary"
                         variant="contained"
                         onClick={handleSubmit}
                         disabled={mobileError || mobile === '' ? true : false}
-                    >Login</Button> : 
-                    <Button
-                        style={{
-                            backgroundColor: "#000",
-                            borderRadius: "20px"
-                        }}
-                        size="small"
-                        color="secondary"
-                        variant="contained"
-                        onClick={handleValidate}
-                        style={{display:isOtpGenerated}}
-                        //disabled={mobileError || mobile =='' ? true : false}
-                    >Validate</Button>}
+                    >Login</Button> :
+                        <Button
+                            className='button'
+                            name="validate"
+                            size="small"
+                            color="secondary"
+                            variant="contained"
+                            onClick={handleValidate}
+                            style={{ display: isOtpGenerated }}
+                        >Validate</Button>}
                 </CardActions>
-                <NotificationContainer/>
+                <NotificationContainer />
             </Card>
         </div>
-     );
+    );
 }
- 
+
 export default Login;
