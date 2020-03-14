@@ -53,13 +53,74 @@ describe('Add Event COmponent Test', () => {
         expect(element.length).toBe(1)
     });
 
-    test('should render create event button ', () => {
-        const mockCallBack = jest.fn();
+    // test('should render create event button ', () => {
+    //     const mockCallBack = jest.fn();
+    //     const button = shallow((<AddEvent className='create-event-btn' onClick={mockCallBack} />));
+    //     button.simulate('click');
+    //     expect(mockCallBack).toHaveBeenCalled();
+    // });
 
-        const button = shallow((<AddEvent className='create-event-btn' onClick={mockCallBack}>Create Event</AddEvent>));
-        button.find(`[className='create-event-btn']`).simulate('click');
+    test('should call handleCreateEvent on click ', () => {
+        const handleCreateEvent = jest.fn();
+        const button = shallow((<button className='create-event-btn' onClick={handleCreateEvent}>Create Event</button>));
+        button.find(`.create-event-btn`).simulate('click');
+        expect(handleCreateEvent).toHaveBeenCalled();
+    });
+
+    test('should call handleClearEvent on click ', () => {
+        const handleClearEvent = jest.fn();
+        const button = shallow((<button className='clear-event-btn' onClick={handleClearEvent}>Clear Event</button>));
+        button.find(`.clear-event-btn`).simulate('click');
+        expect(handleClearEvent).toHaveBeenCalled();
+    });
+
+    test('should call upload event ', () => {
+        const mockCallBack = jest.fn();
+        const button = shallow((<button className='upload-button' onChange={mockCallBack}>upload Event</button>));
+        button.find(`.upload-button`).simulate('change');
         expect(mockCallBack).toHaveBeenCalled();
     });
 
+    test('should call setEventType on click ', () => {
+        const setEventType = jest.fn();
+        const button = shallow((<select name='event-type' onChange={setEventType}>upload Event</select>));
+        button.find(`[name='event-type']`).simulate('change');
+        expect(setEventType).toHaveBeenCalled();
+    });
+
+    test('should call setEventTypeError on click ', () => {
+        const setEventTypeError = jest.fn();
+        const button = shallow((<select name='event-type' onBlur={setEventTypeError}>upload Event</select>));
+        button.find(`[name='event-type']`).simulate('blur');
+        expect(setEventTypeError).toHaveBeenCalled();
+    });
+
+    test('should call setEventLocation on click ', () => {
+        const setEventLocation = jest.fn();
+        const button = shallow((<select name='event-location' onChange={setEventLocation}>upload Event</select>));
+        button.find(`[name='event-location']`).simulate('change');
+        expect(setEventLocation).toHaveBeenCalled();
+    });
+
+    test('should call setEventLocationError on click ', () => {
+        const setEventLocationError = jest.fn();
+        const button = shallow((<select name='event-location' onBlur={setEventLocationError}>upload Event</select>));
+        button.find(`[name='event-location']`).simulate('blur');
+        expect(setEventLocationError).toHaveBeenCalled();
+    });
+
+    test('should call setGender on click ', () => {
+        const setGender = jest.fn();
+        const button = shallow((<select name='gender-allowed' onChange={setGender}>upload Event</select>));
+        button.find(`[name='gender-allowed']`).simulate('change');
+        expect(setGender).toHaveBeenCalled();
+    });
+
+    test('should call setGenderError on click ', () => {
+        const setGenderError = jest.fn();
+        const button = shallow((<select name='gender-allowed' onBlur={setGenderError}>upload Event</select>));
+        button.find(`[name='gender-allowed']`).simulate('blur');
+        expect(setGenderError).toHaveBeenCalled();
+    });
 
 })

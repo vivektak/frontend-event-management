@@ -87,6 +87,7 @@ const AddEvent = (props) => {
                 <InputLabel htmlFor="filled-jobType-simple">Event Type</InputLabel>
                 <Select
                     value={eventType}
+                    name='event-type'
                     onChange={e => setEventType(e.target.value)}
                     onBlur={e => { setEventTypeError(checkEventTypeValidation(e.target.value)) }}
                     inputProps={{
@@ -106,6 +107,7 @@ const AddEvent = (props) => {
                 <InputLabel htmlFor="filled-jobType-simple">Event Location</InputLabel>
                 <Select
                     value={eventLocation}
+                    name='event-location'
                     onChange={e => setEventLocation(e.target.value)}
                     onBlur={e => { setEventLocationError(checkEventLocationValidation(e.target.value)) }}
                     inputProps={{
@@ -125,6 +127,7 @@ const AddEvent = (props) => {
                 <InputLabel htmlFor="filled-jobType-simple">Genders Allowed</InputLabel>
                 <Select
                     value={gender}
+                    name='gender-allowed'
                     onChange={e => setGender(e.target.value)}
                     onBlur={e => { setGenderError(checkGenderValidation(e.target.value)) }}
                     inputProps={{

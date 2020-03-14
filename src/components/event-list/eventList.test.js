@@ -18,6 +18,20 @@ describe('Should render Event List Component', () => {
         const element = wrapper.find(`[className='search-bar']`);
         expect(element.length).toBe(1)
     });
+
+    test('should call setSearchTerm on change', () => {
+        const setSearchTerm = jest.fn();
+        const button = shallow((<searchbar className='search-bar' onChange={setSearchTerm} />));
+        button.find(`.search-bar`).simulate('change');
+        expect(setSearchTerm).toHaveBeenCalled();
+    });
+
+    test('should call handleSearch on change', () => {
+        const handleSearch = jest.fn();
+        const button = shallow((<searchbar className='search-bar' onBlur={handleSearch} />));
+        button.find(`.search-bar`).simulate('blur');
+        expect(handleSearch).toHaveBeenCalled();
+    });
     
 });
 

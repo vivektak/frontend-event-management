@@ -60,6 +60,7 @@ const EventList = () => {
 				value={searchTerm}
 				onChange={e => setSearchTerm(e)}
 				onRequestSearch={handleSearch}
+				placeholder='Search By Event type'
 				className='search-bar'
 			/>
 			<Container>
