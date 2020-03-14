@@ -20,6 +20,8 @@ import { checkEventTypeValidation, checkEventLocationValidation, checkGenderVali
 import Header from '../header/header';
 import './addEvent.css';
 import { http } from '../../helpers/httpService';
+import { toBase64 } from '../../helpers/commonHandler';
+
 
 const AddEvent = (props) => {
 
@@ -70,13 +72,6 @@ const AddEvent = (props) => {
         });
     }
 
-    const toBase64 = file => new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-
     const onChange = async (e) => {
         const image = await toBase64(e.target.files[0]);
         setImageUpload(image);
@@ -85,6 +80,9 @@ const AddEvent = (props) => {
     return (<React.Fragment>
         <Header type='list' />
         <Card className='card'>
+        <div className='event-management-box'>
+                    <h2>Add Event</h2>
+                </div>
             <FormControl error={eventTypeError ? true : null} variant="outlined" className="opening-box form-control" >
                 <InputLabel htmlFor="filled-jobType-simple">Event Type</InputLabel>
                 <Select
