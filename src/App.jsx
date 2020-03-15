@@ -7,6 +7,7 @@ import EventList from './components/event-list/eventList';
 import AddEvent from './components/add-event/addEvent';
 
 function App() {
+
   return (
     <BrowserRouter>
       <div className="App">

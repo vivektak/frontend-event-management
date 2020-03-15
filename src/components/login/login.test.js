@@ -7,6 +7,10 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 describe('Render Login Component', () => {
 
     const wrapper = shallow(<Login />)
+    test('should match the snapshot', () => {
+        expect(wrapper.html()).toMatchSnapshot();
+      });
+
     test('should render component ', () => {
         const element = wrapper.find(`[data-test="login-component"]`);
         expect(element.length).toBe(1)

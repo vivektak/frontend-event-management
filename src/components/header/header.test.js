@@ -6,7 +6,8 @@ const mockFn = jest.fn();
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('Header component', () =>{
-    const wrapper = shallow(<Header />)
+    const wrapper = shallow(<Header />);
+   
     test('should render component ', () => {
         const element = wrapper.find(`[position="static"]`);
         expect(element.length).toBe(1)

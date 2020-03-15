@@ -9,6 +9,10 @@ describe('Should render Event List Component', () => {
 
     const wrapper = shallow(<EventList />)
 
+    // test('should match the snapshot', () => {
+    //     expect(wrapper.html()).toMatchSnapshot();
+    //   });
+
     test('should render header component ', () => {
         const element = wrapper.find(`[type="Add"]`);
         expect(element.length).toBe(1)

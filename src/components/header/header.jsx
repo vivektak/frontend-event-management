@@ -7,9 +7,9 @@ import {
 } from "@material-ui/core";
 import './header.css'
 
-
 const Header = (props) => {
-    return (<AppBar position="static">
+    return (
+    <AppBar position="static">
         <Toolbar>
             <Typography variant="h5" className='event-management'>
                 Event Management

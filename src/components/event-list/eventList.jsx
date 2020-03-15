@@ -4,7 +4,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { Container } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Header from '../header/header';
-import { http } from '../../helpers/httpService';
+import { get } from '../../helpers/httpService';
 import SearchBar from 'material-ui-search-bar';
 import './eventList.css';
 import moment from 'moment';
@@ -19,7 +19,7 @@ const EventList = () => {
 	const [isSearched, setIsSearched] = useState(false);
 
 	const getEventList = () => {
-		http.get(`/event/${page}`).then((res) => {
+		get(`/event/${page}`).then((res) => {
 			setEventData([...eventData, ...res.data.data]);
 		});
 	};

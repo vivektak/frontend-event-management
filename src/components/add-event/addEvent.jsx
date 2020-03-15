@@ -19,7 +19,7 @@ import {
 import { checkEventTypeValidation, checkEventLocationValidation, checkGenderValidation } from '../../helpers/commonValidation';
 import Header from '../header/header';
 import './addEvent.css';
-import { http } from '../../helpers/httpService';
+import { post } from '../../helpers/httpService';
 import { toBase64 } from '../../helpers/commonHandler';
 
 
@@ -65,7 +65,7 @@ const AddEvent = (props) => {
         }
 
 
-        http.post('/event/add', data).then(res => {
+        post('/event/add', data).then(res => {
             props.history.push('/event-list');
         }).catch(error => {
             console.log(error);

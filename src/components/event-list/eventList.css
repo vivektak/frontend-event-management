@@ -1,6 +1,7 @@
 .search-bar{
     margin: 0 auto;
     max-width: 800;
+    width:94%;
 }
 .grid{
     padding-top : 20px;

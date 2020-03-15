@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { checkMobileValidation } from '../../helpers/commonValidation';
-import { http } from '../../helpers/httpService';
+import { post } from '../../helpers/httpService';
 import './login.css';
 
 const Login = (props) => {
@@ -20,7 +20,7 @@ const Login = (props) => {
     const [isOtpGenerated, setIsOtpGenerated] = useState('none');
 
     const handleSubmit = e => {
-        http.post('/user/login', { mobile }).then(res => {
+        post('/user/login', { mobile }).then(res => {
             NotificationManager.success('Success', 'OTP sent to mobile number');
             setIsOtpGenerated(true);
         })
@@ -33,7 +33,7 @@ const Login = (props) => {
             OTP: otp
         }
 
-        http.post('/user/verifyLoginOTP', data).then(res => {
+        post('/user/verifyLoginOTP', data).then(res => {
             NotificationManager.success('Success', 'Verified Successfully');
             props.history.push('/event-list');
         }).catch(error => {

@@ -2,12 +2,15 @@ import React from 'react';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import AddEvent from './addEvent';
-//const mockFn = jest.fn();
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('Add Event COmponent Test', () => {
     const wrapper = shallow(<AddEvent />);
-    
+
+    // test('should match the snapshot', () => {
+    //     expect(wrapper.html()).toMatchSnapshot();
+    //   });
+
     test('should render Header component ', () => {
         const element = wrapper.find(`[type='list']`);
         expect(element.length).toBe(1)
@@ -52,13 +55,6 @@ describe('Add Event COmponent Test', () => {
         const element = wrapper.find(`[className='clear-event-btn']`);
         expect(element.length).toBe(1)
     });
-
-    // test('should render create event button ', () => {
-    //     const mockCallBack = jest.fn();
-    //     const button = shallow((<AddEvent className='create-event-btn' onClick={mockCallBack} />));
-    //     button.simulate('click');
-    //     expect(mockCallBack).toHaveBeenCalled();
-    // });
 
     test('should call handleCreateEvent on click ', () => {
         const handleCreateEvent = jest.fn();
@@ -123,4 +119,5 @@ describe('Add Event COmponent Test', () => {
         expect(setGenderError).toHaveBeenCalled();
     });
 
-})
+  
+});
