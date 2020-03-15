@@ -21,6 +21,8 @@ const EventList = () => {
 	const getEventList = () => {
 		get(`/event/${page}`).then((res) => {
 			setEventData([...eventData, ...res.data.data]);
+		}).catch(error => {
+			console.log(error);
 		});
 	};
 

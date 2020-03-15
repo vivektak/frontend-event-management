@@ -3,6 +3,7 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import Login from './login';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
+import {post} from '../../helpers/httpService';
 
 describe('Render Login Component', () => {
 
@@ -72,5 +73,41 @@ describe('Render Login Component', () => {
         button.find(`[name="otp"]`).simulate('blur');
         expect(setOtpError).toHaveBeenCalled();
     });
+
+    test('should load user data', () => {
+        return post('/user/login', {mobile : '9898267327'})
+        .then(data => {
+          expect(data).toBeDefined()
+        })
+      });
+
+      test('should not load user data', () => {
+        return post('/user/login', {mobile : '989826732'})
+        .then(data => {
+          
+        }).catch(error => {
+            expect(error).toBeDefined()
+        })
+      });
+
+    
+      test('should validate otp ', () => {
+        return post('/user/verifyLoginOTP', {mobile : '9898267327', OTP : '123456'})
+        .then(data => {
+          expect(data).toBeDefined();
+        })
+      });
+
+      test('should not validate otp', () => {
+        return post('/user/verifyLoginOTP', {mobile : '9898267327', OTP : '12346'})
+        .then(data => {
+          
+        }).catch(error => {
+            expect(error).toBeDefined();
+        })
+      });
+
+
+
 });
 

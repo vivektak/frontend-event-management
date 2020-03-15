@@ -2,17 +2,13 @@ import React from 'react';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import EventList from './eventList';
-const mockFn = jest.fn();
+import {get} from '../../helpers/httpService';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 describe('Should render Event List Component', () => {
 
     const wrapper = shallow(<EventList />)
-
-    // test('should match the snapshot', () => {
-    //     expect(wrapper.html()).toMatchSnapshot();
-    //   });
-
+    
     test('should render header component ', () => {
         const element = wrapper.find(`[type="Add"]`);
         expect(element.length).toBe(1)
@@ -36,6 +32,21 @@ describe('Should render Event List Component', () => {
         button.find(`.search-bar`).simulate('blur');
         expect(handleSearch).toHaveBeenCalled();
     });
-    
+
+    test('should load user data', () => {
+        get(`/event/1`)
+        .then(data => {
+          expect(data).toBeDefined()
+        })
+      });
+
+      test('should load user data', () => {
+        get(`/event`)
+        .then(data => {
+          
+        }).catch(error => {
+            expect(error).toBeDefined()
+        })
+      });
 });
 

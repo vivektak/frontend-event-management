@@ -3,6 +3,7 @@ import EnzymeAdapter from 'enzyme-adapter-react-16';
 import Enzyme, { shallow } from 'enzyme';
 import AddEvent from './addEvent';
 Enzyme.configure({ adapter: new EnzymeAdapter() });
+import {post} from '../../helpers/httpService';
 
 describe('Add Event COmponent Test', () => {
     const wrapper = shallow(<AddEvent />);
@@ -118,6 +119,36 @@ describe('Add Event COmponent Test', () => {
         button.find(`[name='gender-allowed']`).simulate('blur');
         expect(setGenderError).toHaveBeenCalled();
     });
+
+    test('should add event data', () => {
+        const data = {
+            'type': 'eventType',
+            'image': 'imageUpload',
+            'location': 'eventLocation',
+            'date': 'selectedDate',
+            'genderAllowed': 'gender'
+        }
+
+        post('/event/add', data)
+        .then(res => {
+          expect(res).toBeDefined();
+        })
+      });
+
+      test('should  not add event data', () => {
+        const data = {
+            'type': 'eventType',
+            'image': 'imageUpload',
+            'location': 'eventLocation',
+        }
+
+        post('/event/add', data)
+        .then(res => {
+          
+        }).catch(error => {
+            expect(error).toBeDefined()
+        })
+      });
 
   
 });

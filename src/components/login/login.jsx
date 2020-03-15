@@ -23,6 +23,8 @@ const Login = (props) => {
         post('/user/login', { mobile }).then(res => {
             NotificationManager.success('Success', 'OTP sent to mobile number');
             setIsOtpGenerated(true);
+        }).catch(error => {
+            console.log(error);
         })
     };
 
